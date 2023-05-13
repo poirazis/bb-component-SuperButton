@@ -1,0 +1,17 @@
+{
+  "type": "component",
+  "metadata": {},
+  "schema": {
+    "name": "bb-coomponent-SuperActionButton",
+    "friendlyName": "bb-coomponent-SuperActionButton",
+    "description": "An Action Button component for Budibase. Works with Super Action Button Group component.",
+    "icon": "Text",
+    "settings": [
+      {
+        "type": "text",
+        "key": "text",
+        "label": "Text"
+      }
+    ]
+  }
+}
