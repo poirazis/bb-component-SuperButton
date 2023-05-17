@@ -3,14 +3,59 @@
   "metadata": {},
   "schema": {
     "name": "bb-coomponent-SuperActionButton",
-    "friendlyName": "bb-coomponent-SuperActionButton",
+    "friendlyName": "Super Action Button",
     "description": "An Action Button component for Budibase. Works with Super Action Button Group component.",
     "icon": "Text",
+    "styles": [ "padding", "size", "background", "border" ],
     "settings": [
       {
         "type": "text",
         "key": "text",
-        "label": "Text"
+        "label": "Text",
+        "defaultValue" : "Action"
+      },
+      {
+        "type": "icon",
+        "key": "icon",
+        "label": "Icon"
+      },
+      {
+        "type": "select",
+        "key": "size",
+        "label": "Size",
+        "options" : [
+          { "label": "Extra Small" , "value" : "XS" },
+          { "label": "Small" , "value" : "S" },
+          { "label": "Medium" , "value" : "M" },
+          { "label": "Large" , "value" : "L" },
+          { "label": "Extra Large" , "value" : "XL" }
+        ],
+        "defaultValue" : "M"
+      },
+      {
+        "type" : "boolean",
+        "key" : "emphasized",
+        "label" : "Emphasized"
+      },
+      {
+        "type" : "boolean",
+        "key" : "quiet",
+        "label" : "Quiet"
+      },
+      {
+        "type" : "boolean",
+        "key" : "selected",
+        "label" : "Selected"
+      },
+      {
+        "type" : "boolean",
+        "key" : "disabled",
+        "label" : "Disabled"
+      },
+      {
+        "type" : "event",
+        "key" : "onclick",
+        "label" : "On Click"
       }
     ]
   }
