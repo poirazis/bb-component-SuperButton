@@ -54,7 +54,7 @@
       },
       {
         "type" : "event",
-        "key" : "onclick",
+        "key" : "onClick",
         "label" : "On Click"
       }
     ]

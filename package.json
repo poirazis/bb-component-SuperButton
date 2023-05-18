@@ -1,6 +1,6 @@
 {
   "name": "bb-coomponent-SuperActionButton",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "An Action Button component for Budibase. Works with Super Action Button Group component.",
   "license": "MIT",
   "author": "Michael Poirazi",
