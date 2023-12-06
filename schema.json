@@ -2,10 +2,10 @@
   "type": "component",
   "metadata": {},
   "schema": {
-    "name": "bb-coomponent-SuperActionButton",
-    "friendlyName": "Super Action Button",
-    "description": "An Action Button component for Budibase. Works with Super Action Button Group component.",
-    "icon": "Text",
+    "name": "bb-component-SuperButton",
+    "friendlyName": "Super Button",
+    "description": "A Button component for Budibase.",
+    "icon": "Button",
     "styles": [ "padding", "size", "background", "border" ],
     "settings": [
       {
@@ -24,11 +24,9 @@
         "key": "size",
         "label": "Size",
         "options" : [
-          { "label": "Extra Small" , "value" : "XS" },
           { "label": "Small" , "value" : "S" },
           { "label": "Medium" , "value" : "M" },
-          { "label": "Large" , "value" : "L" },
-          { "label": "Extra Large" , "value" : "XL" }
+          { "label": "Large" , "value" : "L" }
         ],
         "defaultValue" : "M"
       },

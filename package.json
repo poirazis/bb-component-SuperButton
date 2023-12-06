@@ -1,7 +1,7 @@
 {
-  "name": "bb-coomponent-SuperActionButton",
-  "version": "1.0.1",
-  "description": "An Action Button component for Budibase. Works with Super Action Button Group component.",
+  "name": "bb-component-SuperButton",
+  "version": "1.1.0",
+  "description": "A Button Component for Budibase",
   "license": "MIT",
   "author": "Michael Poirazi",
   "svelte": "index.js",
