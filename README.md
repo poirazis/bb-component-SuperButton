@@ -1,8 +1,8 @@
-# Bb-coomponent-SuperActionButton
+# Bb-component-SuperButton
 This is a readme for your new Budibase plugin.
 
 # Description
-An Action Button component for Budibase. Works with Super Action Button Group component.
+A Button component for Budibase
 
 Find out more about [Budibase](https://github.com/Budibase/budibase).
 
