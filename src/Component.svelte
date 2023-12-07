@@ -15,7 +15,6 @@
   export let onClick
 
   function handleClick() {
-    console.log("Button Clicked")
     if (onClick) onClick();
   }
 </script>
