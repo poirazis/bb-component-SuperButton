@@ -37,6 +37,11 @@
       },
       {
         "type" : "boolean",
+        "key" : "iconOnly",
+        "label" : "Icon Only"
+      },
+      {
+        "type" : "boolean",
         "key" : "quiet",
         "label" : "Quiet"
       },
@@ -51,9 +56,62 @@
         "label" : "Disabled"
       },
       {
+        "type" : "boolean",
+        "label" : "Loop Actions",
+        "key" : "loopActions"
+      },
+      {
         "type" : "event",
         "key" : "onClick",
-        "label" : "On Click"
+        "label" : "On Click",
+        "dependsOn" : { "setting" : "loopActions", "value" : true, "invert": true }
+      },
+      {
+        "section" : true,
+        "name" : "Batch Action Execution",
+        "dependsOn" : "loopActions",
+        "settings" : [
+          {
+            "type" : "text",
+            "key" : "loopSource",
+            "label" : "Loop Over",
+            "placeholder" : "Expects Array"
+          },
+          {
+            "type" : "event",
+            "key" : "onLoopStart",
+            "label" : "Before Loop",
+            "context": [
+              { "key" : "iterations" , "label" : "Iterations" }
+            ]
+          },
+          {
+            "type" : "event",
+            "key" : "loopEvent",
+            "label" : "Loop Actions",
+            "context": [
+              {
+                "key" : "idx",
+                "label" : "Index"
+              },
+              {
+                "key" : "value",
+                "label" : "Value"
+          }]
+          },
+          {
+            "type" : "number",
+            "key" : "loopDelay",
+            "label" : "Loop Delay",
+            "min" : 100,
+            "defaultValue" : 750
+          },
+          {
+            "type" : "event",
+            "key" : "onLoopEnd",
+            "label" : "After Loop"
+          }
+        ]
       }
     ]
   }
