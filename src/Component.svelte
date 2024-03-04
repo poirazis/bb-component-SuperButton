@@ -7,7 +7,6 @@
   const buttonGroupStore = getContext("super-action-button-group")
 
   export let size
-
   export let icon
   export let iconOnly
   export let text
@@ -27,8 +26,8 @@
   async function handleClick() {
     if ( loopActions ) {
       disabled = true;
+      if ( onLoopStart ) onLoopStart( { iterations : loopSource?.length } )
       if ( Array.isArray(loopSource) && loopEvent ) {
-        if ( onLoopStart ) onLoopStart( { iterations : loopSource.length } )
         for (var i = 0; i < loopSource.length; i++) {
           loopEvent({idx : i, value: loopSource[i]})
           await sleep(loopDelay);
@@ -48,21 +47,24 @@
   }
 </script>
 
-<button on:click|stopPropagation={handleClick} use:styleable={$component.styles} 
-  class:is-selected={selected}    
-  class:spectrum-ActionButton--emphasized={emphasized}
-  class:spectrum-ActionButton--quiet={$buttonGroupStore?.quiet || quiet }
-  class="spectrum-ActionButton spectrum-ActionButton--size{$buttonGroupStore?.size || size}"
-  {disabled} >
-  {#if icon && !$buttonGroupStore?.iconOnly && !iconOnly}
-    <i style:padding-right={ text != "" ? "0.5rem" : "0rem"} class="{icon}"/>
+<div use:styleable={$component.styles} >
+  <button 
+    on:click={handleClick} use:styleable={$component.styles} 
+    class:is-selected={selected}    
+    class:spectrum-ActionButton--emphasized={emphasized}
+    class:spectrum-ActionButton--quiet={$buttonGroupStore?.quiet || quiet }
+    class="spectrum-ActionButton spectrum-ActionButton--size{$buttonGroupStore?.size || size}"
+    {disabled} >
+    {#if icon && !$buttonGroupStore?.iconOnly && !iconOnly}
+      <i style:padding-right={ text != "" ? "0.5rem" : "0rem"} class="{icon}"/>
+      <span class="spectrum-ActionButton-label">{text}</span>
+    {:else if icon && ($buttonGroupStore?.iconOnly || iconOnly )}
+      <i class="{icon} {size}"/>
+    {:else}
     <span class="spectrum-ActionButton-label">{text}</span>
-  {:else if icon && ($buttonGroupStore?.iconOnly || iconOnly )}
-    <i class="{icon} {size}"/>
-  {:else}
-   <span class="spectrum-ActionButton-label">{text}</span>
-  {/if}
-</button>
+    {/if}
+  </button>
+</div>
 
 
 
