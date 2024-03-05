@@ -66,6 +66,11 @@
   </button>
 </div>
 
+<style>
+  .spectrum-ActionButton--emphasized:hover {
+    color: var(--primaryColor);
+  }
+</style>
 
 
 
