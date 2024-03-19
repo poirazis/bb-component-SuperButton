@@ -6,13 +6,23 @@
     "friendlyName": "Super Button",
     "description": "A Button component for Budibase.",
     "icon": "Button",
-    "styles": [ "padding", "size", "background", "border" ],
     "settings": [
       {
         "type": "text",
         "key": "text",
         "label": "Text",
-        "defaultValue" : "Action"
+        "defaultValue": "Action"
+      },
+      {
+        "type": "select",
+        "key": "size",
+        "label": "Size",
+        "options": [
+          { "label": "Small", "value": "S" },
+          { "label": "Medium", "value": "M" },
+          { "label": "Large", "value": "L" }
+        ],
+        "defaultValue": "M"
       },
       {
         "type": "icon",
@@ -20,96 +30,153 @@
         "label": "Icon"
       },
       {
+        "type": "boolean",
+        "key": "fillOnHover",
+        "label": "Fill on Hover",
+        "dependsOn": "icon"
+      },
+      {
+        "tag": "style",
+        "type": "color",
+        "key": "iconColor",
+        "label": "Icon Color",
+        "dependsOn": "icon"
+      },
+      {
+        "tag": "style",
+        "type": "icon",
+        "key": "hoverIcon",
+        "label": "Hover Icon",
+        "resetOn": "icon",
+        "dependsOn": "icon"
+      },
+      {
+        "tag": "style",
+        "type": "color",
+        "dependsOn": "icon",
+        "key": "hoverIconColor",
+        "label": "Hover Icon Color"
+      },
+      {
+        "type": "icon",
+        "tag": "style",
+        "key": "disabledIcon",
+        "label": "Disabled Icon",
+        "dependsOn": "icon"
+      },
+      {
+        "type": "boolean",
+        "key": "emphasized",
+        "label": "Emphasized"
+      },
+      {
+        "type": "boolean",
+        "key": "iconOnly",
+        "label": "Icon Only"
+      },
+      {
+        "type": "boolean",
+        "key": "quiet",
+        "label": "Quiet"
+      },
+      {
+        "type": "boolean",
+        "key": "selected",
+        "label": "Selected"
+      },
+      {
+        "type": "boolean",
+        "key": "disabled",
+        "label": "Disabled"
+      },
+      {
         "type": "select",
-        "key": "size",
-        "label": "Size",
-        "options" : [
-          { "label": "Small" , "value" : "S" },
-          { "label": "Medium" , "value" : "M" },
-          { "label": "Large" , "value" : "L" }
-        ],
-        "defaultValue" : "M"
-      },
-      {
-        "type" : "boolean",
-        "key" : "emphasized",
-        "label" : "Emphasized"
-      },
-      {
-        "type" : "boolean",
-        "key" : "iconOnly",
-        "label" : "Icon Only"
-      },
-      {
-        "type" : "boolean",
-        "key" : "quiet",
-        "label" : "Quiet"
-      },
-      {
-        "type" : "boolean",
-        "key" : "selected",
-        "label" : "Selected"
-      },
-      {
-        "type" : "boolean",
-        "key" : "disabled",
-        "label" : "Disabled"
-      },
-      {
-        "type" : "boolean",
-        "label" : "Loop Actions",
-        "key" : "loopActions"
-      },
-      {
-        "type" : "event",
-        "key" : "onClick",
-        "label" : "On Click",
-        "dependsOn" : { "setting" : "loopActions", "value" : true, "invert": true }
-      },
-      {
-        "section" : true,
-        "name" : "Batch Action Execution",
-        "dependsOn" : "loopActions",
-        "settings" : [
+        "key": "actionsMode",
+        "label": "Actions Mode",
+        "showInBar": true,
+        "barStyle": "buttons",
+        "defaultValue": "normal",
+        "options": [
+          { "label": "Normal", "value": "normal", "barIcon": "Events" },
+          { "label": "Loop", "value": "loop", "barIcon": "Back30Seconds" },
           {
-            "type" : "text",
-            "key" : "loopSource",
-            "label" : "Loop Over",
-            "placeholder" : "Expects Array"
+            "label": "Conditional",
+            "value": "conditional",
+            "barIcon": "Function"
+          }
+        ]
+      },
+      {
+        "type": "event",
+        "key": "onClick",
+        "label": "On Click",
+        "dependsOn": { "setting": "actionsMode", "value": "normal" }
+      },
+      {
+        "section": true,
+        "name": "Batch Action Execution",
+        "dependsOn": { "setting": "actionsMode", "value": "loop" },
+        "settings": [
+          {
+            "type": "text",
+            "key": "loopSource",
+            "label": "Loop Over",
+            "placeholder": "Expects Array"
           },
           {
-            "type" : "event",
-            "key" : "onLoopStart",
-            "label" : "Before Loop",
+            "type": "event",
+            "key": "onLoopStart",
+            "label": "Before Loop",
+            "context": [{ "key": "iterations", "label": "Iterations" }]
+          },
+          {
+            "type": "event",
+            "key": "loopEvent",
+            "label": "Loop Actions",
             "context": [
-              { "key" : "iterations" , "label" : "Iterations" }
+              {
+                "key": "idx",
+                "label": "Index"
+              },
+              {
+                "key": "value",
+                "label": "Value"
+              }
             ]
           },
           {
-            "type" : "event",
-            "key" : "loopEvent",
-            "label" : "Loop Actions",
-            "context": [
-              {
-                "key" : "idx",
-                "label" : "Index"
-              },
-              {
-                "key" : "value",
-                "label" : "Value"
-          }]
+            "type": "number",
+            "key": "loopDelay",
+            "label": "Loop Delay",
+            "min": 100,
+            "defaultValue": 750
           },
           {
-            "type" : "number",
-            "key" : "loopDelay",
-            "label" : "Loop Delay",
-            "min" : 100,
-            "defaultValue" : 750
+            "type": "event",
+            "key": "onLoopEnd",
+            "label": "After Loop"
+          }
+        ]
+      },
+      {
+        "section": true,
+        "name": "Conditional Action Execution",
+        "dependsOn": { "setting": "actionsMode", "value": "conditional" },
+        "settings": [
+          {
+            "type": "text",
+            "key": "condition",
+            "label": "Condition"
           },
           {
-            "type" : "event",
-            "key" : "onLoopEnd",
-            "label" : "After Loop"
+            "type": "event",
+            "key": "onTrueCondition",
+            "label": "If true Actions"
+          },
+          {
+            "type": "event",
+            "key": "onFalseCondition",
+            "label": "Else Actions"
           }
         ]
       }
