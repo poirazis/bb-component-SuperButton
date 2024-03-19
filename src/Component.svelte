@@ -1,80 +1,123 @@
-
 <script>
-  import { getContext } from "svelte"
+  import { getContext } from "svelte";
 
-  const { styleable } = getContext("sdk")
-  const component = getContext("component")
-  const buttonGroupStore = getContext("super-action-button-group")
+  const { styleable } = getContext("sdk");
+  const component = getContext("component");
+  const buttonGroupStore = getContext("super-action-button-group");
 
-  export let size
+  export let size;
+  export let icon;
+  export let fillOnHover;
+  export let iconOnly;
+  export let iconColor;
+  export let hoverIcon;
+  export let hoverIconColor;
+  export let disabledIcon;
+  export let text;
+  export let emphasized;
+  export let quiet;
+  export let selected;
+  export let disabled;
+  export let onClick;
 
-  export let icon
-  export let iconOnly
-  export let text
-  export let emphasized
-  export let quiet
-  export let selected
-  export let disabled
-  export let onClick
+  export let actionsMode;
+  export let condition;
+  export let onTrueCondition;
+  export let onFalseCondition;
+  export let loopSource;
+  export let loopDelay;
+  export let loopEvent;
+  export let onLoopStart;
+  export let onLoopEnd;
 
-  export let loopActions
-  export let loopSource
-  export let loopDelay
-  export let loopEvent
-  export let onLoopStart
-  export let onLoopEnd
+  $: useIcon = icon;
+  $: useColor = iconColor;
+
+  $: console.log(condition);
+
+  let working;
 
   async function handleClick() {
-    if ( loopActions ) {
-      disabled = true;
-      if ( Array.isArray(loopSource) && loopEvent ) {
-        if ( onLoopStart ) onLoopStart( { iterations : loopSource.length } )
+    if (actionsMode == "loop") {
+      if (onLoopStart) await onLoopStart({ iterations: loopSource?.length });
+      if (Array.isArray(loopSource) && loopEvent) {
         for (var i = 0; i < loopSource.length; i++) {
-          loopEvent({idx : i, value: loopSource[i]})
+          await loopEvent({ idx: i, value: loopSource[i] });
           await sleep(loopDelay);
-         }
+        }
       }
-      if ( onLoopEnd ) onLoopEnd();
-      disabled = false;
+      if (onLoopEnd) await onLoopEnd();
+    } else if (actionsMode == "conditional") {
+      if (condition == true) await onTrueCondition?.();
+      else await onFalseCondition?.();
     } else if (onClick) {
-      disabled = true;
-      onClick();
-      disabled = false;
+      await onClick();
     }
+
+    working = false;
+    useIcon = hoverIcon
+      ? hoverIcon
+      : fillOnHover
+        ? icon.replace("line", "fill")
+        : icon;
   }
 
   function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
+    return new Promise((resolve) => setTimeout(resolve, ms));
   }
 </script>
 
-<button on:click|stopPropagation={handleClick} use:styleable={$component.styles} 
-  class:is-selected={selected}    
-  class:spectrum-ActionButton--emphasized={emphasized}
-  class:spectrum-ActionButton--quiet={$buttonGroupStore?.quiet || quiet }
-  class="spectrum-ActionButton spectrum-ActionButton--size{$buttonGroupStore?.size || size}"
-  {disabled} >
-  {#if icon && !$buttonGroupStore?.iconOnly && !iconOnly}
-    <i style:padding-right={ text != "" ? "0.5rem" : "0rem"} class="{icon}"/>
-    <span class="spectrum-ActionButton-label">{text}</span>
-  {:else if icon && ($buttonGroupStore?.iconOnly || iconOnly )}
-    <i class="{icon} {size}"/>
-  {:else}
-   <span class="spectrum-ActionButton-label">{text}</span>
-  {/if}
-</button>
+<div use:styleable={$component.styles}>
+  <button
+    on:click={() => {
+      working = true;
+      useIcon = disabledIcon ? disabledIcon : icon;
+      handleClick();
+    }}
+    on:mouseleave={!disabled && (hoverIcon || fillOnHover || hoverIconColor)
+      ? () => {
+          useIcon = icon;
+          useColor = iconColor;
+        }
+      : () => {}}
+    on:mouseenter={!disabled && (hoverIcon || fillOnHover || hoverIconColor)
+      ? () => {
+          useIcon = hoverIcon
+            ? hoverIcon
+            : fillOnHover
+              ? icon.replace("line", "fill")
+              : icon;
+          useColor = hoverIconColor || iconColor;
+        }
+      : () => {}}
+    class:is-selected={selected}
+    class:spectrum-ActionButton--emphasized={emphasized}
+    class:spectrum-ActionButton--quiet={$buttonGroupStore?.quiet || quiet}
+    class="spectrum-ActionButton spectrum-ActionButton--size{$buttonGroupStore?.size ||
+      size}"
+    style:--iconColor={disabled
+      ? "var(--spectrum-global-color-gray-400)"
+      : useColor}
+    disabled={disabled || working}
+    style:background={$component.styles.normal["background-image"]}
+  >
+    {#if !iconOnly && icon && !$buttonGroupStore?.iconOnly}
+      <i
+        style:padding-right={text != "" ? "0.5rem" : "0rem"}
+        class={disabled && disabledIcon ? disabledIcon : useIcon}
+      />
+      <span class="spectrum-ActionButton-label">{text}</span>
+    {:else if ($buttonGroupStore?.iconOnly || iconOnly) && icon}
+      <i class={disabled && disabledIcon ? disabledIcon : useIcon} />
+    {:else}
+      <span class="spectrum-ActionButton-label">{text}</span>
+    {/if}
+  </button>
+</div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<style>
+  i {
+    color: var(--iconColor);
+    transition: all 230ms ease-in-out;
+  }
+</style>
