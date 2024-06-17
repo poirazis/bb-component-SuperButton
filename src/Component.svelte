@@ -33,8 +33,6 @@
   $: useIcon = icon;
   $: useColor = iconColor;
 
-  $: console.log(condition);
-
   let working;
 
   async function handleClick() {
