@@ -38,6 +38,12 @@
       {
         "tag": "style",
         "type": "color",
+        "key": "textColor",
+        "label": "Text Color"
+      },
+      {
+        "tag": "style",
+        "type": "color",
         "key": "iconColor",
         "label": "Icon Color",
         "dependsOn": "icon"
