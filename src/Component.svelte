@@ -6,6 +6,8 @@
   const buttonGroupStore = getContext("super-action-button-group");
 
   export let size;
+  export let menuItem = false;
+  export let menuAlign = "right";
   export let icon;
   export let fillOnHover;
   export let iconOnly;
@@ -14,11 +16,13 @@
   export let hoverIconColor;
   export let disabledIcon;
   export let text;
+  export let textColor = "var(--spectrum-global-color-gray-700)";
   export let emphasized;
   export let quiet;
   export let selected;
   export let disabled;
   export let onClick;
+  export let context;
 
   export let actionsMode;
   export let condition;
@@ -49,7 +53,7 @@
       if (condition == true) await onTrueCondition?.();
       else await onFalseCondition?.();
     } else if (onClick) {
-      await onClick();
+      await onClick({ context });
     }
 
     working = false;
@@ -65,7 +69,7 @@
   }
 </script>
 
-<div use:styleable={$component.styles}>
+<div class="super-component" use:styleable={$component.styles}>
   <button
     on:click={() => {
       working = true;
@@ -83,7 +87,7 @@
           useIcon = hoverIcon
             ? hoverIcon
             : fillOnHover
-              ? icon.replace("line", "fill")
+              ? icon?.replace("line", "fill")
               : icon;
           useColor = hoverIconColor || iconColor;
         }
@@ -91,6 +95,8 @@
     class:is-selected={selected}
     class:spectrum-ActionButton--emphasized={emphasized}
     class:spectrum-ActionButton--quiet={$buttonGroupStore?.quiet || quiet}
+    class:menu-item={menuItem}
+    class:menu-item-right={menuAlign == "right"}
     class="spectrum-ActionButton spectrum-ActionButton--size{$buttonGroupStore?.size ||
       size}"
     style:--iconColor={disabled
@@ -104,16 +110,28 @@
         style:padding-right={text != "" ? "0.5rem" : "0rem"}
         class={disabled && disabledIcon ? disabledIcon : useIcon}
       />
-      <span class="spectrum-ActionButton-label">{text}</span>
+      <span class="spectrum-ActionButton-label" style:color={textColor}
+        >{text}</span
+      >
     {:else if ($buttonGroupStore?.iconOnly || iconOnly) && icon}
       <i class={disabled && disabledIcon ? disabledIcon : useIcon} />
     {:else}
-      <span class="spectrum-ActionButton-label">{text}</span>
+      <span class="spectrum-ActionButton-label" style:color={textColor}
+        >{text}</span
+      >
     {/if}
   </button>
 </div>
 
 <style>
+  .menu-item {
+    width: 100%;
+    justify-content: flex-start;
+  }
+  .menu-item-right {
+    width: 100%;
+    justify-content: flex-end !important;
+  }
   i {
     color: var(--iconColor);
     transition: all 230ms ease-in-out;
