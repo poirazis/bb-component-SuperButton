@@ -15,6 +15,18 @@
       },
       {
         "type": "select",
+        "key": "type",
+        "label": "Type",
+        "options": [
+          { "label": "Action", "value": "cta" },
+          { "label": "Primary", "value": "primary" },
+          { "label": "Secondary", "value": "L" },
+          { "label": "Warning", "value": "warningM" }
+        ],
+        "defaultValue": "primary"
+      },
+      {
+        "type": "select",
         "key": "size",
         "label": "Size",
         "options": [

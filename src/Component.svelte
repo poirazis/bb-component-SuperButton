@@ -53,7 +53,7 @@
       if (condition == true) await onTrueCondition?.();
       else await onFalseCondition?.();
     } else if (onClick) {
-      await onClick({ context });
+      await onClick(context);
     }
 
     working = false;
@@ -96,7 +96,7 @@
     class:spectrum-ActionButton--emphasized={emphasized}
     class:spectrum-ActionButton--quiet={$buttonGroupStore?.quiet || quiet}
     class:menu-item={menuItem}
-    class:menu-item-right={menuAlign == "right"}
+    class:menu-item-right={menuItem && menuAlign == "right"}
     class="spectrum-ActionButton spectrum-ActionButton--size{$buttonGroupStore?.size ||
       size}"
     style:--iconColor={disabled
