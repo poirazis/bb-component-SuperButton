@@ -15,13 +15,23 @@
       },
       {
         "type": "select",
+        "key": "buttonClass",
+        "label": "Class",
+        "options": [
+          { "label": "Button", "value": "button" },
+          { "label": "Action Button", "value": "actionButton" }
+        ],
+        "defaultValue": "button"
+      },
+      {
+        "type": "select",
         "key": "type",
         "label": "Type",
         "options": [
           { "label": "Action", "value": "cta" },
           { "label": "Primary", "value": "primary" },
-          { "label": "Secondary", "value": "L" },
-          { "label": "Warning", "value": "warningM" }
+          { "label": "Secondary", "value": "secondary" },
+          { "label": "Warning", "value": "warning" }
         ],
         "defaultValue": "primary"
       },
@@ -43,49 +53,8 @@
       },
       {
         "type": "boolean",
-        "key": "fillOnHover",
-        "label": "Fill on Hover",
-        "dependsOn": "icon"
-      },
-      {
-        "tag": "style",
-        "type": "color",
-        "key": "textColor",
-        "label": "Text Color"
-      },
-      {
-        "tag": "style",
-        "type": "color",
-        "key": "iconColor",
-        "label": "Icon Color",
-        "dependsOn": "icon"
-      },
-      {
-        "tag": "style",
-        "type": "icon",
-        "key": "hoverIcon",
-        "label": "Hover Icon",
-        "resetOn": "icon",
-        "dependsOn": "icon"
-      },
-      {
-        "tag": "style",
-        "type": "color",
-        "dependsOn": "icon",
-        "key": "hoverIconColor",
-        "label": "Hover Icon Color"
-      },
-      {
-        "type": "icon",
-        "tag": "style",
-        "key": "disabledIcon",
-        "label": "Disabled Icon",
-        "dependsOn": "icon"
-      },
-      {
-        "type": "boolean",
-        "key": "emphasized",
-        "label": "Emphasized"
+        "key": "iconAfterText",
+        "label": "After Text"
       },
       {
         "type": "boolean",
@@ -96,11 +65,6 @@
         "type": "boolean",
         "key": "quiet",
         "label": "Quiet"
-      },
-      {
-        "type": "boolean",
-        "key": "selected",
-        "label": "Selected"
       },
       {
         "type": "boolean",
