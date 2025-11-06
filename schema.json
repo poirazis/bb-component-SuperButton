@@ -50,7 +50,7 @@
         "defaultValue": "M"
       },
       {
-        "type": "icon",
+        "type": "phosphorIcon",
         "key": "icon",
         "label": "Icon"
       },
@@ -84,8 +84,8 @@
         "barStyle": "buttons",
         "defaultValue": "normal",
         "options": [
-          { "label": "Normal", "value": "normal", "barIcon": "Events" },
-          { "label": "Timer", "value": "timer", "barIcon": "Back30Seconds" },
+          { "label": "Normal", "value": "normal", "barIcon": "cursor-click" },
+          { "label": "Timer", "value": "timer", "barIcon": "clock-clockwise" },
           { "label": "Loop", "value": "loop", "barIcon": "DataRefresh" },
           {
             "label": "Conditional",
