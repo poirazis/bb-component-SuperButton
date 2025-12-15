@@ -55,6 +55,12 @@
         "label": "Icon"
       },
       {
+        "type": "color",
+        "key": "iconColor",
+        "label": "Icon Color",
+        "dependsOn": "icon"
+      },
+      {
         "type": "boolean",
         "key": "iconAfterText",
         "label": "After Text",
@@ -181,6 +187,26 @@
             "label": "Else Actions"
           }
         ]
+      },
+      {
+        "type": "buttonConditions",
+        "label": "Conditions",
+        "key": "conditions",
+        "nestedOnly": true,
+        "contextAccess": {
+          "global": false,
+          "self": true
+        }
+      },
+      {
+        "type": "text",
+        "label": "Disabled",
+        "key": "disabledTemplate",
+        "nestedOnly": true,
+        "contextAccess": {
+          "global": false,
+          "self": true
+        }
       }
     ]
   }
