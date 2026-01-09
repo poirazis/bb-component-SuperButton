@@ -50,6 +50,11 @@
         "defaultValue": "M"
       },
       {
+        "type": "text",
+        "key": "tooltip",
+        "label": "Tooltip"
+      },
+      {
         "type": "phosphorIcon",
         "key": "icon",
         "label": "Icon"

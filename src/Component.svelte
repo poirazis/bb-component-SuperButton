@@ -9,7 +9,7 @@
     ...$component.styles,
     normal: {
       ...$component.styles.normal,
-      flex: "none !important",
+      "max-width": "fit-content",
     },
   };
 </script>
