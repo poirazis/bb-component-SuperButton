@@ -1,6 +1,8 @@
 {
   "type": "component",
-  "metadata": {},
+  "metadata": {
+    "svelteMajor": 5
+  },
   "schema": {
     "name": "bb-component-SuperButton",
     "friendlyName": "Super Button",
@@ -18,8 +20,14 @@
         "key": "buttonClass",
         "label": "Class",
         "options": [
-          { "label": "Button", "value": "button" },
-          { "label": "Action Button", "value": "actionButton" }
+          {
+            "label": "Button",
+            "value": "button"
+          },
+          {
+            "label": "Action Button",
+            "value": "actionButton"
+          }
         ],
         "defaultValue": "button"
       },
@@ -28,12 +36,30 @@
         "key": "type",
         "label": "Type",
         "options": [
-          { "label": "Action", "value": "cta" },
-          { "label": "Primary", "value": "primary" },
-          { "label": "Secondary", "value": "secondary" },
-          { "label": "Warning", "value": "warning" },
-          { "label": "Over Background", "value": "overBackground" },
-          { "label": "Flat White", "value": "ink" }
+          {
+            "label": "Action",
+            "value": "cta"
+          },
+          {
+            "label": "Primary",
+            "value": "primary"
+          },
+          {
+            "label": "Secondary",
+            "value": "secondary"
+          },
+          {
+            "label": "Warning",
+            "value": "warning"
+          },
+          {
+            "label": "Over Background",
+            "value": "overBackground"
+          },
+          {
+            "label": "Flat White",
+            "value": "ink"
+          }
         ],
         "defaultValue": "primary"
       },
@@ -42,10 +68,22 @@
         "key": "size",
         "label": "Size",
         "options": [
-          { "label": "Extra Small", "value": "XS" },
-          { "label": "Small", "value": "S" },
-          { "label": "Medium", "value": "M" },
-          { "label": "Large", "value": "L" }
+          {
+            "label": "Extra Small",
+            "value": "XS"
+          },
+          {
+            "label": "Small",
+            "value": "S"
+          },
+          {
+            "label": "Medium",
+            "value": "M"
+          },
+          {
+            "label": "Large",
+            "value": "L"
+          }
         ],
         "defaultValue": "M"
       },
@@ -95,9 +133,21 @@
         "barStyle": "buttons",
         "defaultValue": "normal",
         "options": [
-          { "label": "Normal", "value": "normal", "barIcon": "cursor-click" },
-          { "label": "Timer", "value": "timer", "barIcon": "clock-clockwise" },
-          { "label": "Loop", "value": "loop", "barIcon": "DataRefresh" },
+          {
+            "label": "Normal",
+            "value": "normal",
+            "barIcon": "cursor-click"
+          },
+          {
+            "label": "Timer",
+            "value": "timer",
+            "barIcon": "clock-clockwise"
+          },
+          {
+            "label": "Loop",
+            "value": "loop",
+            "barIcon": "DataRefresh"
+          },
           {
             "label": "Conditional",
             "value": "conditional",
@@ -109,7 +159,10 @@
         "type": "number",
         "key": "timerDuration",
         "label": "Run Every (s)",
-        "dependsOn": { "setting": "actionsMode", "value": "timer" },
+        "dependsOn": {
+          "setting": "actionsMode",
+          "value": "timer"
+        },
         "defaultValue": 60,
         "min": 1
       },
@@ -117,18 +170,27 @@
         "type": "event",
         "key": "onClick",
         "label": "On Click",
-        "dependsOn": { "setting": "actionsMode", "value": "normal" }
+        "dependsOn": {
+          "setting": "actionsMode",
+          "value": "normal"
+        }
       },
       {
         "type": "event",
         "key": "onTimer",
         "label": "On Timer",
-        "dependsOn": { "setting": "actionsMode", "value": "timer" }
+        "dependsOn": {
+          "setting": "actionsMode",
+          "value": "timer"
+        }
       },
       {
         "section": true,
         "name": "Batch Action Execution",
-        "dependsOn": { "setting": "actionsMode", "value": "loop" },
+        "dependsOn": {
+          "setting": "actionsMode",
+          "value": "loop"
+        },
         "settings": [
           {
             "type": "text",
@@ -140,7 +202,12 @@
             "type": "event",
             "key": "onLoopStart",
             "label": "Before Loop",
-            "context": [{ "key": "iterations", "label": "Iterations" }]
+            "context": [
+              {
+                "key": "iterations",
+                "label": "Iterations"
+              }
+            ]
           },
           {
             "type": "event",
@@ -174,7 +241,10 @@
       {
         "section": true,
         "name": "Conditional Action Execution",
-        "dependsOn": { "setting": "actionsMode", "value": "conditional" },
+        "dependsOn": {
+          "setting": "actionsMode",
+          "value": "conditional"
+        },
         "settings": [
           {
             "type": "text",
