@@ -1,7 +1,7 @@
 {
   "type": "module",
   "name": "bb-component-SuperButton",
-  "version": "1.8.2",
+  "version": "1.8.3",
   "description": "A Button Component for Budibase",
   "license": "MIT",
   "author": "Michael Poirazi",
