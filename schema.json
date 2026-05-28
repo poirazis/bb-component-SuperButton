@@ -35,6 +35,8 @@
         "type": "select",
         "key": "type",
         "label": "Type",
+        "showInBar": true,
+
         "options": [
           {
             "label": "Action",
@@ -67,6 +69,7 @@
         "type": "select",
         "key": "size",
         "label": "Size",
+        "showInBar": true,
         "options": [
           {
             "label": "Extra Small",
@@ -105,6 +108,12 @@
       },
       {
         "type": "boolean",
+        "key": "filledIcon",
+        "label": "Filled Icon",
+        "dependsOn": "icon"
+      },
+      {
+        "type": "boolean",
         "key": "iconAfterText",
         "label": "After Text",
         "dependsOn": "icon"
@@ -124,6 +133,18 @@
         "type": "boolean",
         "key": "disabled",
         "label": "Disabled"
+      },
+      {
+        "type": "boolean",
+        "key": "confirm",
+        "label": "Confirmation",
+        "showInBar": true,
+        "barIcon": "Check"
+      },
+      {
+        "type": "boolean",
+        "key": "workingState",
+        "label": "Working State"
       },
       {
         "type": "select",
